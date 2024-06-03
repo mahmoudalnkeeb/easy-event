@@ -1,9 +1,6 @@
 import { Document, ObjectId } from "mongoose";
 
-interface IEmail {
-  value: string;
-  verified: boolean;
-}
+
 
 interface IProfilePicMetadata {
   height?: number;
@@ -14,7 +11,7 @@ interface IProfilePicMetadata {
   asset_id: string;
 }
 
-interface IProfilePic {
+export interface IProfilePic {
   url: string;
   secure_url: string;
   metadata?: IProfilePicMetadata;
@@ -24,7 +21,8 @@ export default interface IUser extends Document {
   _id?: ObjectId;
   fullname: string;
   username: string;
-  email: IEmail;
+  email: string;
+  email_verified:boolean;
   password_hash: string;
   password_salt: string;
   phone: string;
