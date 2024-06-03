@@ -21,6 +21,9 @@ app.use(
 
 defineModulesRouter()
 app.use("/api/" + appModule.ver, appModule.router);
+app.use((req, res, next) => {
+  res.status(404).json({ message: 'Not found' });
+});
 app.use(errorMiddleware)
 
 export default app;
