@@ -1,4 +1,4 @@
-import { ObjectId, Document } from "mongoose";
+import { ObjectId, Document } from 'mongoose';
 
 export default interface INotification extends Document {
   user_id: ObjectId;

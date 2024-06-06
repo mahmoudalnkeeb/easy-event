@@ -1,5 +1,5 @@
-import { NextFunction, Request, Response } from "express";
-import buildResponse, { R } from "../utils/responseBuilder";
+import { NextFunction, Request, Response } from 'express';
+import buildResponse, { R } from '../utils/responseBuilder';
 
 export class HttpError extends Error {
   status: number;
@@ -7,7 +7,7 @@ export class HttpError extends Error {
   constructor(message: string, status: number) {
     super(message);
     this.status = status;
-    this.name = "HttpError";
+    this.name = 'HttpError';
   }
 }
 
@@ -21,7 +21,7 @@ export default function errorMiddleware(
 
   const statusCode = err instanceof HttpError ? err.status : 500;
   const errorResponse: R = buildResponse(
-    err.message || "An unexpected error occurred",
+    err.message || 'An unexpected error occurred',
     null,
     false
   );

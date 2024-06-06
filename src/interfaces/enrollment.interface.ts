@@ -1,4 +1,4 @@
-import { ObjectId, Document } from "mongoose";
+import { ObjectId, Document } from 'mongoose';
 
 export default interface IEnrollment extends Document {
   event_id: ObjectId; // Assuming reference to event

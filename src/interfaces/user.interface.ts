@@ -1,6 +1,4 @@
-import { Document, ObjectId } from "mongoose";
-
-
+import { Document, ObjectId } from 'mongoose';
 
 interface IProfilePicMetadata {
   height?: number;
@@ -22,7 +20,7 @@ export default interface IUser extends Document {
   fullname: string;
   username: string;
   email: string;
-  email_verified:boolean;
+  email_verified: boolean;
   password_hash: string;
   password_salt: string;
   phone: string;

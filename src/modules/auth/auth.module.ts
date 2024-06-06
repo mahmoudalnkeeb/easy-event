@@ -1,6 +1,6 @@
-import authRouter from "./auth.router";
+import authRouter from './auth.router';
 
 export default {
-  name: "auth",
+  name: 'auth',
   router: authRouter,
 };

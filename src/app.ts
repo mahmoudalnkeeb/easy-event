@@ -1,11 +1,11 @@
-import express, { Application } from "express";
-import cors from "cors";
-import apiConfig from "./config/api.config";
-import initDB from "./config/db.config";
-import helmet from "helmet";
-import appModule from "./app.module";
-import { defineModulesRouter } from "./app.router";
-import errorMiddleware from "./middlewares/error.middleware";
+import express, { Application } from 'express';
+import cors from 'cors';
+import apiConfig from './config/api.config';
+import initDB from './config/db.config';
+import helmet from 'helmet';
+import appModule from './app.module';
+import { defineModulesRouter } from './app.router';
+import errorMiddleware from './middlewares/error.middleware';
 
 const app: Application = express();
 initDB();
@@ -19,11 +19,11 @@ app.use(
   })
 );
 
-defineModulesRouter()
-app.use("/api/" + appModule.ver, appModule.router);
+defineModulesRouter();
+app.use('/api/' + appModule.ver, appModule.router);
 app.use((req, res, next) => {
   res.status(404).json({ message: 'Not found' });
 });
-app.use(errorMiddleware)
+app.use(errorMiddleware);
 
 export default app;

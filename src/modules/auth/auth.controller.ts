@@ -1,16 +1,22 @@
-import { NextFunction, Response, Request } from "express";
+import { NextFunction, Response, Request } from 'express';
 import {
   compareUserPassword,
   createUser,
   isValidEmail,
   isValidUsername,
-} from "../../models/user.model";
-import { UserSignup } from "../../interfaces/auth.interface";
-import jwt from "jsonwebtoken";
-import buildResponse from "../../utils/responseBuilder";
-import messages from "../../config/messages";
-import envConfig from "../../config/env.config";
-import { Schema } from "mongoose";
+} from '../../models/user.model';
+import { UserSignup } from '../../interfaces/auth.interface';
+import jwt from 'jsonwebtoken';
+import buildResponse from '../../utils/responseBuilder';
+import messages from '../../config/messages';
+import envConfig from '../../config/env.config';
+import { ObjectId, Schema } from 'mongoose';
+import {
+    compareAdminPassword,
+  createAdmin,
+  validateEmail,
+  validateUsername,
+} from '../../models/admin.model';
 
 export async function userSignupController(
   req: Request,
@@ -76,6 +82,23 @@ export async function adminSignupController(
   next: NextFunction
 ) {
   try {
+    let response;
+    const { username, email, password } = req.body;
+    const emailUsed = await validateEmail(email);
+    const usernameUsed = await validateUsername(username);
+    if (emailUsed) {
+      response = buildResponse(messages.email_exist, null, false);
+      return res.status(400).json(response);
+    }
+    if (usernameUsed) {
+      response = buildResponse(messages.username_exist, null, false);
+      return res.status(400).json(response);
+    }
+    const admin = await createAdmin({ username, email, password });
+    const token = jwt.sign(admin, envConfig.jwtSecret);
+    response = buildResponse(messages.account_created, { token }, true);
+    console.log(response);
+    return res.status(201).json(response);
   } catch (error) {
     next(error);
   }
@@ -87,7 +110,21 @@ export async function adminLoginController(
   next: NextFunction
 ) {
   try {
+    let response
+  const {password , username , email} = req.body
+  const isValidCredentials = await compareAdminPassword(password , {username , email}) 
+    if (!isValidCredentials) {
+      response = buildResponse(messages.invalid_credentials, null, false);
+      return res.status(401).json(response);
+    }
+    const token = jwt.sign(
+      isValidCredentials as {id:ObjectId},       envConfig.jwtSecret
+    );
+    response = buildResponse(messages.login_success, { token }, true);
+    return res.status(200).json(response);
+
   } catch (error) {
-    next(error);
+    next(error)
   }
 }
+

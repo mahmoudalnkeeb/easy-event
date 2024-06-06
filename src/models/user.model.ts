@@ -1,8 +1,8 @@
-import { Model, ObjectId, Schema, model } from "mongoose";
-import IUser from "../interfaces/user.interface";
-import { UserSignup } from "../interfaces/auth.interface";
-import { compareSync, genSaltSync, hashSync } from "bcrypt";
-import envConfig from "../config/env.config";
+import { Model, ObjectId, Schema, model } from 'mongoose';
+import IUser from '../interfaces/user.interface';
+import { UserSignup } from '../interfaces/auth.interface';
+import { compareSync, genSaltSync, hashSync } from 'bcrypt';
+import envConfig from '../config/env.config';
 
 const userSchema: Schema<IUser> = new Schema(
   {
@@ -41,12 +41,12 @@ const userSchema: Schema<IUser> = new Schema(
       url: {
         type: String,
         required: true,
-        default: "default:avatar",
+        default: 'default:avatar',
       },
       secure_url: {
         type: String,
         required: true,
-        default: "default:avatar",
+        default: 'default:avatar',
       },
       metadata: {
         height: Number,
@@ -63,7 +63,7 @@ const userSchema: Schema<IUser> = new Schema(
   }
 );
 
-export const User: Model<IUser> = model("User", userSchema);
+export const User: Model<IUser> = model('User', userSchema);
 
 export async function getUsers(page: number = 1, limit: number = 10) {
   try {
@@ -71,8 +71,8 @@ export async function getUsers(page: number = 1, limit: number = 10) {
     const users = await User.find({}, null, { skip, limit });
     return users;
   } catch (error) {
-    console.error("Error fetching users:", error);
-    throw new Error("Failed to fetch users");
+    console.error('Error fetching users:', error);
+    throw new Error('Failed to fetch users');
   }
 }
 
@@ -80,8 +80,8 @@ export async function getUser(id: string) {
   try {
     return await User.findById(id);
   } catch (error) {
-    console.error("Error fetching user:", error);
-    throw new Error("Failed to fetch user");
+    console.error('Error fetching user:', error);
+    throw new Error('Failed to fetch user');
   }
 }
 
@@ -121,16 +121,16 @@ export async function compareUserPassword(
 ): Promise<boolean | { id: Schema.Types.ObjectId; created_at: Date }> {
   try {
     if (!username && !email) return false;
-    const user = await User.findOne(email ? { email } : { username });    
-    if (!user) return false;    
+    const user = await User.findOne(email ? { email } : { username });
+    if (!user) return false;
     const isMatch = compareSync(
       password + user.password_salt,
       user.password_hash
-      );
+    );
     if (!isMatch) return false;
     return { id: user._id, created_at: user.createdAt };
   } catch (error) {
-    console.error("Error comparing user password:", error);
+    console.error('Error comparing user password:', error);
     return false;
   }
 }
@@ -139,8 +139,8 @@ export async function deleteUser(id: string) {
   try {
     return await User.findByIdAndDelete(id);
   } catch (error) {
-    console.error("Error deleting user:", error);
-    throw new Error("Failed to delete user");
+    console.error('Error deleting user:', error);
+    throw new Error('Failed to delete user');
   }
 }
 
@@ -148,8 +148,8 @@ export async function updateUser(id: string, newUserData: Partial<IUser>) {
   try {
     return await User.findByIdAndUpdate(id, newUserData, { new: true });
   } catch (error) {
-    console.error("Error updating user:", error);
-    throw new Error("Failed to update user");
+    console.error('Error updating user:', error);
+    throw new Error('Failed to update user');
   }
 }
 
@@ -157,8 +157,8 @@ export async function isValidEmail(email: string): Promise<boolean> {
   try {
     return !!(await User.findOne({ email }));
   } catch (error) {
-    console.error("Error validating email:", error);
-    throw new Error("Failed to validate email");
+    console.error('Error validating email:', error);
+    throw new Error('Failed to validate email');
   }
 }
 
@@ -166,7 +166,7 @@ export async function isValidUsername(username: string): Promise<boolean> {
   try {
     return !!(await User.findOne({ username }));
   } catch (error) {
-    console.error("Error validating username:", error);
-    throw new Error("Failed to validate username");
+    console.error('Error validating username:', error);
+    throw new Error('Failed to validate username');
   }
 }

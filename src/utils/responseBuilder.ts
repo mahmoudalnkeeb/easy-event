@@ -9,8 +9,9 @@ export default function buildResponse(
   data: Object | null,
   success: boolean
 ): R {
-
   return {
-    message , data , success
-  }
+    message,
+    data,
+    success,
+  };
 }

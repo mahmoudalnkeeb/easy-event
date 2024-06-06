@@ -1,3 +1,3 @@
 export default {
-  apiOrigins: ["*"],
-}
+  apiOrigins: ['*'],
+};

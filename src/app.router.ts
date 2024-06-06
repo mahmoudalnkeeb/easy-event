@@ -1,11 +1,11 @@
-import { Request, Response, Router } from "express";
-import appModule from "./app.module";
+import { Request, Response, Router } from 'express';
+import appModule from './app.module';
 const router: Router = Router();
 
-router.get("/health", (req: Request, res: Response) => {
+router.get('/health', (req: Request, res: Response) => {
   const data = {
     uptime: process.uptime(),
-    message: "Ok",
+    message: 'Ok',
     date: new Date(),
   };
   res.status(200).send(data);
@@ -18,7 +18,6 @@ export function defineModulesRouter() {
   for (const module of modules) {
     router.use(`/${module.name}`, module.router);
     console.log(`${module.name} definded on path /${module.name}`);
-    
   }
 }
 

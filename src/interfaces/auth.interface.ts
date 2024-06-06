@@ -10,7 +10,7 @@ export interface AdminSignup {
   username: string;
   email: string;
   password: string;
-  access_level?: "ADMIN" | "SUPER_ADMIN" | "ATTENDANCE_MANAGER";
+  access_level?: 'ADMIN' | 'SUPER_ADMIN' | 'ATTENDANCE_MANAGER';
 }
 
 export interface EmailLogin {

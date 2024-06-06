@@ -1,10 +1,10 @@
-import { NextFunction, Request, Response } from "express";
+import { NextFunction, Request, Response } from 'express';
 import {
   deleteUser,
   getUser,
   getUsers,
   updateUser,
-} from "../../models/user.model";
+} from '../../models/user.model';
 
 // @role:admin
 export async function getUsersController(
@@ -22,7 +22,7 @@ export async function getUsersController(
       data: users || [],
       error: null,
       statusCode,
-      message: users.length ? "users fetched successfully" : "no users found",
+      message: users.length ? 'users fetched successfully' : 'no users found',
     });
   } catch (error) {
     next(error);
@@ -41,8 +41,8 @@ export async function getUserController(
       data: user || [],
       error: null,
       message: user
-        ? "user found successfully"
-        : "no user found with requested id",
+        ? 'user found successfully'
+        : 'no user found with requested id',
     });
   } catch (error) {
     next(error);
@@ -62,8 +62,8 @@ export async function updateUserController(
       data: user || [],
       error: null,
       message: user
-        ? "user updated successfully"
-        : "no user found with requested id",
+        ? 'user updated successfully'
+        : 'no user found with requested id',
     });
   } catch (error) {
     next(error);
@@ -82,8 +82,8 @@ export async function deleteUserController(
       data: user || [],
       error: null,
       message: user
-        ? "user deleted successfully"
-        : "no user found with requested id",
+        ? 'user deleted successfully'
+        : 'no user found with requested id',
     });
   } catch (error) {
     next(error);

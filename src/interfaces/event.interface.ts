@@ -1,4 +1,4 @@
-import { Document, ObjectId } from "mongoose";
+import { Document, ObjectId } from 'mongoose';
 
 export default interface IEvent extends Document {
   title: string;
