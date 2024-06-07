@@ -6,4 +6,5 @@ export default {
   port: parseInt(process.env.PORT as string),
   rounds: parseInt(process.env.ROUNDS as string),
   jwtSecret: process.env.JWT_SECRET as string,
+  secret_key: process.env.SECRET_KEY as string,
 };
