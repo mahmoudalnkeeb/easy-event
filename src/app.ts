@@ -22,7 +22,7 @@ app.use(
 defineModulesRouter();
 app.use('/api/' + appModule.ver, appModule.router);
 app.use((req, res, next) => {
-  res.status(404).json({ message: 'Not found' });
+  res.status(404).json({ message: 'Not found', data: null, success: false });
 });
 app.use(errorMiddleware);
 
