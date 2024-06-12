@@ -2,10 +2,11 @@
 
 system to manage events built with nodejs , express and mongodb
 
-## project structure
+## Project Structure
 
 ```bash
 .
+├── eslint.config.mjs
 ├── nodemon.json
 ├── package.json
 ├── package-lock.json
@@ -17,17 +18,21 @@ system to manage events built with nodejs , express and mongodb
 │   ├── config
 │   │   ├── api.config.ts
 │   │   ├── db.config.ts
-│   │   └── env.config.ts
+│   │   ├── env.config.ts
+│   │   └── messages.ts
 │   ├── interfaces
 │   │   ├── admin.interface.ts
+│   │   ├── auth.interface.ts
 │   │   ├── enrollment.interface.ts
 │   │   ├── event.interface.ts
 │   │   ├── invitation.interface.ts
 │   │   ├── notification.interface.ts
 │   │   └── user.interface.ts
 │   ├── middlewares
+│   │   ├── access.middleware.ts
 │   │   ├── auth.middleware.ts
-│   │   └── error.middleware.ts
+│   │   ├── error.middleware.ts
+│   │   └── types.ts
 │   ├── models
 │   │   ├── admin.model.ts
 │   │   ├── enrollment.model.ts
@@ -45,7 +50,13 @@ system to manage events built with nodejs , express and mongodb
 │   │       ├── users.module.ts
 │   │       └── users.router.ts
 │   ├── server.ts
-│   └── services
-└── tsconfig.json
-  
+│   ├── services
+│   │   └── placeholder.service.ts
+│   └── utils
+│       └── responseBuilder.ts
+├── tsconfig.json
+└── vercel.json
 ```
+
+
+## Environment Variables
