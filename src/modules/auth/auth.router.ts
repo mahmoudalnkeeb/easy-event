@@ -12,6 +12,6 @@ authRouter.post('/login', userLoginController);
 authRouter.post('/signup', userSignupController);
 authRouter.post('/cp/login', adminLoginController);
 authRouter.post('/cp/signup', adminSignupController);
-authRouter.post('/cp/signup',requireSecretKey, adminSignupController);
+authRouter.post('/cp/signup', requireSecretKey, adminSignupController);
 
 export default authRouter;

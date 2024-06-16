@@ -2,8 +2,8 @@ import { NextFunction, Request, Response } from 'express';
 import buildResponse from '../utils/responseBuilder';
 import messages from '../config/messages';
 import envConfig from '../config/env.config';
+import { AuthenticatedRequest } from './types';
 
-type AuthenticatedRequest = Request & { user: { id: string; role: string } };
 export function requireRole(role: string) {
   return function (
     req: AuthenticatedRequest,
