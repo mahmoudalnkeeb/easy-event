@@ -1,9 +1,10 @@
 {
   "name": "event-management-system",
   "version": "1.0.0",
-  "main": "server.js",
+  "main": "./dist/index.js",
   "scripts": {
-    "start": "nodemon src/server.ts",
+    "start": "node dist/index.js",
+    "start:dev": "export NODE_ENV='development'&&nodemon",
     "build": "rimraf dist && tsc",
     "ts.check": "tsc --project tsconfig.json",
     "add-build": "git add dist",
@@ -12,8 +13,8 @@
     "format": "prettier --write 'src/**/*.{js,ts,json,md}'"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "mahmoudalnkeeb",
+  "license": "MIT",
   "description": "",
   "dependencies": {
     "bcrypt": "^5.1.1",
